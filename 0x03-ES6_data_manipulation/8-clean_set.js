@@ -1,12 +1,7 @@
-export default function cleanSet(set, startString) {
-  if (typeof startString !== 'string' || startString === '') {
-    return '';
-  }
-  let result = '';
-  for (const item of set) {
-    if (item.startsWith(startString)) {
-      result += `${item.slice(startString.length)}-`;
-    }
-  }
-  return result.slice(0, -1); // Remove the trailing '-'
+export default function cleanSet(set, str) {
+  if (str === undefined || str.length === 0) return "";
+  return [...set]
+    .filter((val) => (val ? val.startsWith(str) : ""))
+    .map((val) => (val ? val.slice(str.length) : ""))
+    .join("-");
 }
